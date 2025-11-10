@@ -6,7 +6,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userRole, setUserRole] = useState(null); // 'consumer', 'admin', 'tutor'
+  const [userRole, setUserRole] = useState(null); // 'consumer', 'admin', 'tutor' 
   const [userProfile, setUserProfile] = useState({});
 
   // Simulate login logic based on credentials

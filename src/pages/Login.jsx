@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'framer-motion';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,8 +13,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    
-    // Simulate login and role assignment
+
     const role = login(email, password);
 
     if (role) {
@@ -24,77 +24,114 @@ const Login = () => {
   };
 
   return (
-    <div style={containerStyle}>
-      [cite_start]<h2>Login / Subscribe to Upskilling and Outsourcing [cite: 68]</h2>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        
-        <input
-          type="text"
-          placeholder="Email/phone number"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={inputStyle}
-        />
-        
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={inputStyle}
-        />
-        
-        <button type="submit" style={buttonStyle}>
-          Login
-        </button>
-      </form>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: 'linear-gradient(135deg, #ebf5ff, #d6eaff)',
+        padding: '20px'
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        style={{ width: '100%', maxWidth: '420px' }}
+      >
+        <div
+          style={{
+            background: 'white',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            borderRadius: '20px',
+            padding: '40px'
+          }}
+        >
+          <h2
+            style={{
+              fontSize: '26px',
+              fontWeight: '700',
+              textAlign: 'center',
+              marginBottom: '25px',
+              color: '#1d4ed8'
+            }}
+          >
+            Login / Subscribe to Upskilling and Outsourcing
+          </h2>
 
-      <div style={subscriptionNoteStyle}>
-        [cite_start]<p>Your subscription plan (Free, Premium, Platinum) [cite: 68] and payment interface are handled after a successful login.</p>
-        <p>Test accounts: consumer/consumer, admin/admin, tutor/tutor</p>
-      </div>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {error && (
+              <p style={{ color: 'red', fontSize: '14px', textAlign: 'center' }}>{error}</p>
+            )}
+
+            <input
+              type="text"
+              placeholder="Email or phone number"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={{
+                padding: '12px',
+                borderRadius: '12px',
+                border: '1px solid #d1d5db',
+                outline: 'none',
+                fontSize: '15px',
+                transition: '0.2s'
+              }}
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={{
+                padding: '12px',
+                borderRadius: '12px',
+                border: '1px solid #d1d5db',
+                outline: 'none',
+                fontSize: '15px',
+                transition: '0.2s'
+              }}
+            />
+
+            <button
+              type="submit"
+              style={{
+                width: '100%',
+                padding: '14px',
+                fontSize: '18px',
+                borderRadius: '12px',
+                backgroundColor: '#2563eb',
+                color: 'white',
+                border: 'none',
+                cursor: 'pointer',
+                transition: '0.3s'
+              }}
+            >
+              Login
+            </button>
+          </form>
+
+          <div
+            style={{
+              marginTop: '22px',
+              paddingTop: '14px',
+              borderTop: '1px solid #e5e7eb',
+              fontSize: '14px',
+              color: '#4b5563',
+              textAlign: 'center'
+            }}
+          >
+            <p>Your subscription plan (Free, Premium, Platinum) and payment interface are handled after login.</p>
+            <p style={{ marginTop: '6px', fontWeight: '600' }}>Test accounts: consumer/consumer, admin/admin, tutor/tutor</p>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
-
-const containerStyle = {
-  maxWidth: '400px',
-  margin: '50px auto',
-  padding: '20px',
-  border: '1px solid #ccc',
-  borderRadius: '8px',
-  boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-};
-
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '15px'
-};
-
-const inputStyle = {
-  padding: '10px',
-  borderRadius: '4px',
-  border: '1px solid #ddd'
-};
-
-const buttonStyle = {
-  padding: '10px',
-  backgroundColor: '#3498db',
-  color: 'white',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer'
-};
-
-const subscriptionNoteStyle = {
-    marginTop: '20px',
-    paddingTop: '15px',
-    borderTop: '1px solid #eee',
-    fontSize: '0.9em'
-}
 
 export default Login;

@@ -9,7 +9,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
-  padding: 14px 60px;
+  padding: 14px 90px;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.65);
 
   transition: all 0.4s ease;
-  margin-left: -20px;
+
 }
 
 .navbar.scrolled {
