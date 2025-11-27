@@ -1,0 +1,451 @@
+/* HeroSlide.css - Full Code with Responsive Enhancements */
+
+/* ---------------------------------------------------- */
+/* 1. HERO SLIDER CONTAINER & FLOATING SHAPES */
+/* ---------------------------------------------------- */
+
+.hero-slider-container {
+  display: flex;
+  height: 100vh;
+  padding: 100px; /* Note: Adjust this padding based on the image cutoff issue discussed earlier */
+  margin-top: 50px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Floating Background Shapes - Creates animated background elements */
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevents shapes from interfering with mouse events */
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%; /* Circular shapes */
+  background: linear-gradient(45deg, #00eaff, #8f65ff);
+  opacity: 0.1; /* Subtle transparency */
+  animation: float 20s infinite linear; /* Continuous floating animation */
+}
+
+/* Individual shape positioning and animation variations */
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -150px;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 100px;
+  left: -100px;
+  animation-delay: -5s; /* Negative delay starts animation mid-cycle */
+  animation-duration: 25s; /* Different duration for variation */
+}
+
+.shape-3 {
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  right: 20%;
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+
+/* Floating animation with rotation and vertical movement */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(20px) rotate(270deg);
+  }
+}
+
+/* ---------------------------------------------------- */
+/* 2. LEFT SIDE (IMAGE) */
+/* ---------------------------------------------------- */
+
+.slider-left {
+  position: relative;
+  width: 55%; /* Takes up 55% of container width */
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  position: relative;
+  height: 80vh; /* Fixed height relative to viewport */
+  width: 200%; /* Extra width for image positioning */
+  border-radius: 30px;
+  overflow: hidden; /* Ensures content stays within rounded borders */
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5), /* Deep shadow for depth */
+    0 0 0 1px rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers container without distortion */
+  border-radius: 30px;
+}
+
+/* Color overlay gradient for image enhancement */
+.image-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  background: linear-gradient(45deg, 
+    rgba(0, 234, 255, 0.1) 0%, 
+    rgba(143, 101, 255, 0.1) 100%);
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+/* ---------------------------------------------------- */
+/* 3. RIGHT SIDE (CONTENT) */
+/* ---------------------------------------------------- */
+
+.slider-right {
+  width: 45%; /* Takes up 45% of container width */
+  padding: 80px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.content-wrapper {
+  max-width: 500px; /* Limits content width for better readability */
+}
+
+.slider-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #00eaff, #8f65ff, #00eaff);
+  background-size: 200% 200%; /* Larger than container for animation */
+  -webkit-background-clip: text; /* Clips background to text shape */
+  -webkit-text-fill-color: transparent; /* Makes text color transparent to show gradient */
+  animation: gradientShift 3s ease infinite; /* Animated gradient effect */
+  position: relative;
+}
+
+/* Animated gradient background position */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Underline element for title */
+.title-underline {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(45deg, #00eaff, #8f65ff);
+  border-radius: 10px;
+}
+
+.slider-desc {
+  font-size: 1.4rem;
+  line-height: 1.6; /* Improved readability with line height */
+  color: #e2e8f0; /* Light gray color */
+  margin-bottom: 50px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for better contrast */
+}
+
+.slider-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px; /* Space between icon and text */
+  padding: 18px 35px;
+  background: linear-gradient(45deg, #00eaff, #8f65ff);
+  border-radius: 50px; /* Pill-shaped button */
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a; /* Dark text for contrast */
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 234, 255, 0.4); /* Glowing effect */
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.slider-btn:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
+  box-shadow: 0 15px 40px rgba(0, 234, 255, 0.6); /* Enhanced glow on hover */
+}
+
+/* Slide Counter - Shows current slide number */
+.slide-counter {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  font-size: 1.1rem;
+  color: #94a3b8; /* Muted color */
+  font-weight: 600;
+}
+
+.current-slide {
+  color: #00eaff; /* Accent color for current slide number */
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+/* ---------------------------------------------------- */
+/* 4. SLIDER CONTROLS (BUTTONS, PROGRESS, DOTS) */
+/* ---------------------------------------------------- */
+
+/* Navigation Buttons */
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Perfect vertical centering */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px); /* Glass morphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 2.5rem;
+  padding: 15px 20px;
+  border-radius: 50%; /* Circular buttons */
+  cursor: pointer;
+  color: #fff;
+  z-index: 10; /* Ensures buttons are above other content */
+  transition: all 0.3s ease;
+}
+
+.slide-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 234, 255, 0.4);
+}
+
+.slide-btn.left {
+  left: 20px;
+}
+.slide-btn.right {
+  right: 20px;
+}
+
+/* Progress Bar - Shows slide transition progress */
+.progress-bar {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%); /* Horizontal centering */
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2); /* Background track */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(45deg, #00eaff, #8f65ff);
+  border-radius: 10px;
+}
+
+/* Navigation Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px; /* Space between dots */
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3); /* Inactive dot color */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: transparent;
+  border: 2px solid #00eaff; /* Active dot border */
+}
+
+/* Pulsing effect for active dot */
+.dot-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00eaff;
+  box-shadow: 0 0 10px #00eaff; /* Glow effect */
+}
+
+/* ---------------------------------------------------- */
+/* 5. RESPONSIVE DESIGN */
+/* ---------------------------------------------------- */
+
+/* Tablet/Small Desktop (1024px) */
+@media (max-width: 1024px) {
+  .hero-slider-container {
+    flex-direction: column; /* Stack image and content vertically */
+    height: auto; /* Allow height to adjust to content */
+    padding: 50px 20px; 
+    margin-top: 100px; 
+  }
+  
+  .slider-left,
+  .slider-right {
+    width: 100%; /* Full width on smaller screens */
+    padding: 30px 20px; 
+  }
+
+  .image-container {
+    height: 60vh; /* Reduced height for tablets */
+    width: 100%; /* Full width */
+  }
+  
+  .slider-right {
+    padding-top: 40px; /* Added spacing when stacked */
+  }
+  
+  .slider-title {
+    font-size: 3rem; /* Slightly smaller title */
+  }
+
+  .slider-desc {
+    font-size: 1.2rem; /* Slightly smaller description */
+  }
+
+  .slide-btn.left {
+    left: 40px; /* Adjusted positioning */
+  }
+  .slide-btn.right {
+    right: 40px;
+  }
+}
+
+/* Standard Tablets (768px) */
+@media (max-width: 768px) {
+  .hero-slider-container {
+    padding: 30px 15px; /* Reduced padding */
+  }
+  
+  .slider-left,
+  .slider-right {
+    padding: 20px 15px;
+  }
+
+  .image-container {
+    height: 50vh; /* Further reduced height */
+    border-radius: 20px; /* Slightly smaller border radius */
+  }
+
+  .slider-title {
+    font-size: 2.5rem; 
+    margin-bottom: 20px;
+  }
+
+  .slider-desc {
+    font-size: 1.1rem; 
+    margin-bottom: 30px;
+  }
+
+  .slider-btn {
+    padding: 15px 30px; 
+    font-size: 1rem;
+  }
+
+  /* Reposition and resize controls for mobile */
+  .slide-btn {
+    font-size: 2rem;
+    padding: 10px 15px;
+    top: initial; /* Override 50% placement */
+    bottom: 10px; /* New bottom placement */
+    transform: none;
+  }
+  .slide-btn.left {
+    left: 20px;
+  }
+  .slide-btn.right {
+    right: 20px;
+  }
+
+  .progress-bar {
+    bottom: 60px;
+    width: 150px; /* Smaller progress bar */
+  }
+  .slider-dots {
+    bottom: 10px;
+  }
+  .slide-counter {
+    right: 20px;
+    bottom: 15px;
+  }
+}
+
+/* Small Mobile Devices (480px) */
+@media (max-width: 480px) {
+  .hero-slider-container {
+    padding: 20px 10px; /* Minimal padding */
+  }
+  
+  .slider-left,
+  .slider-right {
+    padding: 15px 10px;
+  }
+
+  .image-container {
+    height: 40vh; /* Smallest height for mobile */
+    border-radius: 15px;
+  }
+
+  .slider-title {
+    font-size: 2rem; /* Smallest title size */
+  }
+
+  .slider-desc {
+    font-size: 1rem; /* Smallest description size */
+  }
+
+  .slider-btn {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+
+  .slide-btn {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+
+  /* Hide controls to save space on very small screens */
+  .progress-bar,
+  .slider-dots {
+    display: none;
+  }
+
+  .slide-counter {
+    bottom: 5px;
+    right: 10px;
+    font-size: 0.9rem;
+  }
+}

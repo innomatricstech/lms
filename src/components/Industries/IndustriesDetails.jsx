@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import './Industry.css';
 
 const industryData = {
-  "information-technology": {
+  "informationtechnology": {
     title: "Information Technology",
     gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     pages: [
@@ -88,7 +88,7 @@ const industryData = {
       }
     ]
   },
-  "finance-banking": {
+  "financebanking": {
     title: "Finance & Banking",
     gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     pages: [
@@ -178,14 +178,6 @@ const IndustryDetail = () => {
   const { industryId } = useParams();
   const industry = industryData[industryId];
 
-  if (!industry) {
-    return (
-      <div className="industry-not-found">
-        <h2>Industry not found</h2>
-        <Link to="/industries">Back to Industries</Link>
-      </div>
-    );
-  }
 
   return (
     <motion.div
@@ -265,14 +257,15 @@ const IndustryDetail = () => {
       </div>
 
       {/* Navigation */}
-      <div className="industry-navigation">
-        <Link to="/#industries" className="back-button">
-          ← Back to Industries
-        </Link>
-        <Link to="/contact" className="inquiry-button" style={{ background: industry.gradient }}>
-          Get Industry Solution
-        </Link>
-      </div>
+     <div className="service-navigation">
+                     {/* This links back to your /services route handled by ServicesSection */}
+                            <Link to="/" state={{ scrollTo: "industries" }} className="back-button">
+       ← Back to Industries
+     </Link>
+                     <Link to="/" state={{ scrollTo: "contact" }} className="inquiry-button " style={{ backgroundColor: industry.color }}>
+                         Contact Us About {industry.title}
+                     </Link>
+                 </div>
     </motion.div>
   );
 };

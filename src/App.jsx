@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
 
 import Home from "./pages/Home";
-import Services from "./pages/Services";
+
 import Industries from "./pages/Industries";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -60,14 +60,7 @@ const App = () => {
         />
 
         {/* SERVICES ROUTES */}
-        <Route
-          path="/services"
-          element={
-            <PublicLayout>
-              <Services />
-            </PublicLayout>
-          }
-        />
+      
 
         {/* ✅ ADD INDIVIDUAL SERVICE DETAIL ROUTES */}
         <Route

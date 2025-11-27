@@ -1,132 +1,225 @@
-/* Outer wrapper */
-.alfa-wrapper {
-  width: 100%;
-  height: 100vh;
-  background: #081420;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Window Frame */
-.alfa-window {
-  width: 85%;
-  max-width: 1300px;
-  background: #0d1b2a;
-  border-radius: 14px;
-  padding-bottom: 20px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
-}
-
-/* Browser Top Bar */
-.alfa-topbar {
-  height: 45px;
-  background: #132235;
-  border-radius: 14px 14px 0 0;
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-  gap: 12px;
-}
-
-.circle {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-}
-
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.purple { background: #9b6cff; }
-
-/* Main Content Grid */
-.alfa-content {
-  display: flex;
-  gap: 20px;
-  padding: 25px;
-}
-
-/* -----------------------------------
-   LEFT LARGE CARD 
---------------------------------------*/
-.left-card {
-  flex: 2;
-  background: #0e1c2c;
-  border-radius: 12px;
-  padding: 45px 40px;
+.source-of-truth-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  color: white;
   position: relative;
-  color: #f0e4c3;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.left-title {
-  font-size: 4rem;
+.source-of-truth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00eaff, #8f65ff, #00ff85);
+}
+
+.source-of-truth-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #00eaff, #8f65ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+}
+
+.source-of-truth-title {
+  font-size: 2rem;
   font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #fff, #00eaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.source-of-truth-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.source-of-truth-description {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #00eaff;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* Alternative minimalist version */
+.source-of-truth-minimal {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.source-of-truth-minimal .icon {
+  width: 60px;
+  height: 60px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: #0f172a;
+  font-size: 1.5rem;
+}
+
+.source-of-truth-minimal .title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
   margin-bottom: 8px;
 }
 
-.left-sub {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 40px;
-}
-
-.workspace-icon {
-  font-size: 4.5rem;
+.source-of-truth-minimal .subtitle {
+  font-size: 1rem;
+  color: #64748b;
   margin-bottom: 20px;
-  color: #eaddb2;
 }
 
-.workspace-text {
-  font-size: 1.8rem;
+.source-of-truth-minimal .description {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-left: 3px solid #3b82f6;
 }
 
-/* Progress Circle */
-.progress-circle {
+/* Modern tech version */
+.source-of-truth-tech {
+  background: linear-gradient(135deg, #1a1f36 0%, #2d3748 100%);
+  border-radius: 24px;
+  padding: 35px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #4a5568;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.source-of-truth-tech::after {
+  content: '';
   position: absolute;
-  right: 30px;
-  bottom: 30px;
-  width: 95px;
-  height: 95px;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.source-of-truth-tech .glow-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(59, 130, 246, 0.2);
+  border: 2px solid #3b82f6;
   border-radius: 50%;
-  border: 8px solid #0f1520;
-  border-left-color: #00ff85;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 2;
 }
 
-.progress-circle span {
-  font-size: 1.4rem;
-  color: #d7cfa4;
+.source-of-truth-tech .title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
 }
 
-/* -----------------------------------
-   RIGHT CARDS (2 stacked)
---------------------------------------*/
-.right-cards {
-  flex: 1;
+.source-of-truth-tech .subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.source-of-truth-tech .features {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
 }
 
-.right-card {
-  background: #0e1c2c;
-  border-radius: 12px;
-  padding: 40px 30px;
-  text-align: center;
+.source-of-truth-tech .feature {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Icons */
-.right-icon {
-  font-size: 4rem;
-  margin-bottom: 12px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .source-of-truth-card,
+  .source-of-truth-minimal,
+  .source-of-truth-tech {
+    margin: 0 20px;
+    padding: 30px 25px;
+  }
+  
+  .source-of-truth-title {
+    font-size: 1.8rem;
+  }
+  
+  .source-of-truth-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
 }
 
-.blue { color: #00c8ff; }
-.red { color: #ff4545; }
-
-/* Text */
-.right-text {
-  font-size: 1.5rem;
+@media (max-width: 480px) {
+  .source-of-truth-card,
+  .source-of-truth-minimal,
+  .source-of-truth-tech {
+    margin: 0 15px;
+    padding: 25px 20px;
+  }
+  
+  .source-of-truth-title {
+    font-size: 1.6rem;
+  }
+  
+  .source-of-truth-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
 }

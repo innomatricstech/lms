@@ -1,235 +1,311 @@
-/* ========================================================= */
-/* 🌟 TECH MANTHANA EXACT COLOR MATCH (from image) */
-/* ========================================================= */
-
 .techmanthana-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background: #0C0D25; /* EXACT dark navy background */
-  color: #D8E0FF; 
-  padding: 80px 60px;
-  gap: 60px;
-  flex-wrap: wrap;
-  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #040714 0%, #100a16 100%);
+  color: white;
+  padding: 20px;
+  gap: 30px;
 }
 
 /* LEFT SECTION */
 .left-section {
   flex: 1;
-  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
 }
 
 .brand-title {
-  color: #32A9FF; /* Blue heading from image */
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #ffd700;
 }
 
 .brand-subtitle {
-  color: #99A2C8; /* Muted subtitle */
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
 }
 
 .main-heading {
-  font-size: 46px;
+  font-size: 3rem;
   font-weight: 800;
-  color: #FFFFFF; /* Pure white */
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 .description {
-  color: #D8E0FF;
-  font-size: 16px;
-  margin-bottom: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
 }
 
 .features-list li {
-  font-size: 17px;
-  margin-bottom: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #FFFFFF;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
 .features-list .icon {
-  color: #FFCC33; /* GOLD EXACT */
-  font-size: 22px;
+  margin-right: 15px;
+  font-size: 1.3rem;
+  color: #ffd700;
 }
 
 .extra-info {
-  color: #99A2C8;
-  margin-top: 20px;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-style: italic;
 }
 
 .company-name {
-  margin-top: 25px;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-size: 1.3rem;
+  color: #ffd700;
+  margin-top: 2rem;
 }
 
-/* ========================================================= */
 /* RIGHT SECTION */
-/* ========================================================= */
-
 .right-section {
   flex: 1;
-  min-width: 340px;
-  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
 }
 
 .right-heading {
-  font-size: 38px;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin-bottom: 25px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .right-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-bottom: 25px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 2rem;
 }
 
 .right-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 15px;
-
+  padding: 15px;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  color: #D8E0FF;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  font-size: 1rem;
 }
 
-/* ICON COLORS EXACT */
-.icon.yellow { color: #FFC233; }
-.icon.purple { color: #C27BFF; }
-.icon.blue   { color: #53A9FF; }
+.right-item .icon {
+  margin-right: 12px;
+  font-size: 1.5rem;
+}
+
+.icon.yellow { color: #ffd700; }
+.icon.purple { color: #b19cd9; }
+.icon.blue { color: #87ceeb; }
 
 .highlight-text {
-  margin: 25px 0;
-  color: #D8E0FF;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 2rem 0;
+  font-weight: 600;
+  color: #ffd700;
 }
 
-/* ========================================================= */
-/* PLANS */
-/* ========================================================= */
-
+/* PLAN CARDS */
 .plans {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .plan-card {
-  flex: 1;
-  min-width: 180px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 25px 15px;
+  border-radius: 15px;
   text-align: center;
-  padding: 20px;
-
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-
-  color: #FFFFFF;
-  transition: 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .plan-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* EXACT COLORS PER PLAN */
-.free h4, 
-.free .plan-icon { color: #53A9FF; }
-
-.premium h4, 
-.premium .plan-icon { color: #C27BFF; }
-
-.platinum h4, 
-.platinum .plan-icon { color: #FFC233; }
-
-/* Responsive */
-@media (max-width: 900px) {
-  .techmanthana-container {
-    flex-direction: column;
-    padding: 40px 25px;
-  }
-  .right-grid {
-    grid-template-columns: 1fr;
-  }
-  .plans {
-    flex-direction: column;
-  }
-}
-/* BLOG PAGE */
-.blog-page-container {
-  padding: 60px;
-  background: #0C0D25;
-  min-height: 100vh;
-  color: #D8E0FF;
+.plan-card h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #ffd700;
 }
 
-.blog-page-title {
-  font-size: 36px;
-  font-weight: 800;
-  color: #53A9FF;
-  margin-bottom: 20px;
+.plan-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #fff;
 }
 
-.blog-page-content {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 18px;
+.plan-card p {
+  font-size: 0.9rem;
+  margin: 0;
 }
+
+/* EXPLORE BUTTON */
 .explore-btn {
-  margin-top: 25px;
-  padding: 12px 26px;
-  background: #53A9FF; /* same blue theme */
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  color: #333;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  padding: 15px 40px;
+  font-size: 1.1rem;
   font-weight: 600;
+  border-radius: 50px;
   cursor: pointer;
-  color: #0C0D25;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .explore-btn:hover {
-  background: #78c1ff;
-  transform: translateY(-3px);
-}
-.blog-buttons {
-  margin-top: 20px;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  background: linear-gradient(45deg, #ffed4e, #ffd700);
 }
 
-.blog-button {
-  background-color: #0056ff;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .techmanthana-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .left-section, .right-section {
+    padding: 15px;
+  }
+  
+  .main-heading {
+    font-size: 2.5rem;
+  }
+  
+  .right-heading {
+    font-size: 2rem;
+  }
+  
+  .right-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .plans {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.blog-button:hover {
-  background-color: #003ebb;
+@media (max-width: 768px) {
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .main-heading {
+    font-size: 2rem;
+  }
+  
+  .right-heading {
+    font-size: 1.8rem;
+  }
+  
+  .plans {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .plan-card {
+    padding: 20px 10px;
+  }
+  
+  .features-list li {
+    font-size: 1rem;
+  }
+  
+  .description, .extra-info {
+    font-size: 1rem;
+  }
 }
 
-.blog-content-box {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f5f7ff;
-  border-radius: 10px;
-  line-height: 1.6;
+@media (max-width: 480px) {
+  .techmanthana-container {
+    padding: 10px;
+    gap: 15px;
+  }
+  
+  .left-section, .right-section {
+    padding: 10px;
+  }
+  
+  .brand-title {
+    font-size: 1.8rem;
+  }
+  
+  .main-heading {
+    font-size: 1.8rem;
+  }
+  
+  .right-heading {
+    font-size: 1.6rem;
+  }
+  
+  .right-item {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .explore-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+  
+  .highlight-text {
+    font-size: 1.1rem;
+  }
+  
+  .company-name {
+    font-size: 1.1rem;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 360px) {
+  .brand-title {
+    font-size: 1.6rem;
+  }
+  
+  .main-heading {
+    font-size: 1.6rem;
+  }
+  
+  .right-heading {
+    font-size: 1.4rem;
+  }
+  
+  .features-list li {
+    font-size: 0.9rem;
+  }
+  
+  .plan-card h4 {
+    font-size: 1.1rem;
+  }
 }
