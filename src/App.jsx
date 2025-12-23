@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import PublicLayout from "./layouts/PublicLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 /* -------- PUBLIC PAGES -------- */
 import Home from "./pages/Home";
@@ -45,31 +47,6 @@ import Classes from "./pages/tutor/Classes";
 import Assignments from "./pages/tutor/Assignments";
 import StudentQueries from "./pages/tutor/StudentQueries";
 
-/* =====================================================
-   PROTECTED ROUTE (LocalStorage Based)
-===================================================== */
-const ProtectedRoute = ({ children, allowedRoles }) => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  const userRole = localStorage.getItem("userRole");
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (!allowedRoles.includes(userRole)) {
-    return (
-      <div style={{ padding: "40px", textAlign: "center" }}>
-        <h2>Access Denied</h2>
-        <p>
-          Required role: <b>{allowedRoles.join(", ")}</b>
-        </p>
-        <p>Your role: <b>{userRole}</b></p>
-      </div>
-    );
-  }
-
-  return children;
-};
 
 const App = () => {
   return (

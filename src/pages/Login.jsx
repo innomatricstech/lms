@@ -14,6 +14,7 @@ import {
   FaEye,
   FaEyeSlash
 } from "react-icons/fa";
+import { setDoc } from "firebase/firestore";
 
 const ADMIN_DOC_ID = "xGUSclC0q6S1IEI4iRb03pkiXIS2";
 
@@ -28,74 +29,77 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
 
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email.trim(),
-        password
-      );
+  try {
+    // 1️⃣ Login with Firebase Auth
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email.trim(),
+      password
+    );
 
-      const uid = userCredential.user.uid;
+    const user = userCredential.user;
+    const uid = user.uid;
 
-      if (role === "admin") {
-        const adminRef = doc(db, "admin", ADMIN_DOC_ID);
-        const adminSnap = await getDoc(adminRef);
+    // 2️⃣ ADMIN CHECK (by UID)
+    const adminRef = doc(db, "admin", uid);
+    const adminSnap = await getDoc(adminRef);
 
-        if (!adminSnap.exists()) {
-          throw new Error("Admin record missing");
-        }
-
-        const adminData = adminSnap.data();
-
-        if (adminData.email.toLowerCase() !== email.trim().toLowerCase()) {
-          throw new Error("This email is not authorized as admin");
-        }
-
-        localStorage.setItem("userRole", "admin");
-        navigate("/dashboard/admin");
-        return;
-      }
-
-      const userRef = doc(db, "users", uid);
-      const userSnap = await getDoc(userRef);
-
-      if (!userSnap.exists()) {
-        throw new Error("User profile not found");
-      }
-
-      const userData = userSnap.data();
-
-      if (userData.role !== role) {
-        throw new Error(`Account not registered as ${role}`);
-      }
-
-      if (userData.approved === false) {
-        throw new Error("Your account is pending admin approval");
-      }
-
-      localStorage.setItem("userRole", userData.role);
-      navigate(`/dashboard/${userData.role}`);
-    } catch (err) {
-      console.error("LOGIN ERROR:", err);
-
-      if (err.code === "auth/user-not-found") {
-        setError("No account with this email");
-      } else if (err.code === "auth/wrong-password") {
-        setError("Incorrect password");
-      } else if (err.code === "auth/invalid-email") {
-        setError("Invalid email format");
-      } else {
-        setError(err.message || "Login failed");
-      }
-    } finally {
-      setLoading(false);
+    if (adminSnap.exists()) {
+      localStorage.setItem("userRole", "admin");
+      navigate("/dashboard/admin");
+      return;
     }
-  };
+
+    // 3️⃣ NORMAL USER CHECK
+    const userRef = doc(db, "users", uid);
+    const userSnap = await getDoc(userRef);
+
+    // 4️⃣ AUTO-CREATE USER PROFILE IF NOT EXISTS
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        role: "consumer",   // default role
+        approved: true,
+        createdAt: new Date()
+      });
+
+      localStorage.setItem("userRole", "consumer");
+      navigate("/dashboard/consumer");
+      return;
+    }
+
+    const userData = userSnap.data();
+
+    // 5️⃣ CHECK APPROVAL
+    if (userData.approved === false) {
+      throw new Error("Your account is pending admin approval");
+    }
+
+    // 6️⃣ REDIRECT BY ROLE FROM FIRESTORE
+    localStorage.setItem("userRole", userData.role);
+    navigate(`/dashboard/${userData.role}`);
+
+  } catch (err) {
+    console.error("LOGIN ERROR:", err);
+
+    if (
+      err.code === "auth/invalid-credential" ||
+      err.code === "auth/user-not-found" ||
+      err.code === "auth/wrong-password"
+    ) {
+      setError("Invalid email or password");
+    } else {
+      setError(err.message || "Login failed");
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen w-l flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-2 mt-24  relative overflow-hidden">
